@@ -1,0 +1,30 @@
+<div class="container">
+    <h1 class="text-success text-center mt-3">Product List</h1>
+    <div class="row">
+        <table class="table table-dark table-striped mt-3">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Team Name</th>
+                <th scope="col">Price($)</th>
+                <th scope="col">Quantity(T-Shirt)</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let Product of products">
+                <th scope="row">{{Product.id}}</th>
+                <td>{{Product.name}}</td>
+                <td>{{Product.price}} $</td>
+                <td class="px-5">{{Product.quantity}}</td>
+                <td>
+                    <i class="mx-2 text-success fs-5 bi-person-vcard-fill" [routerLink]="['/products',Product.id]"></i>
+                    <i class="mx-2 text-info fs-5 bi bi-pen" [routerLink]="['/products',Product.id,'edit']"></i>
+                    <i (click)="deleteProduct(Product.id)" class="mx-2 text-danger fs-5 bi bi-trash3-fill"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+

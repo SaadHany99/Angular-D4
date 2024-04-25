@@ -1,0 +1,20 @@
+<div class="container mt-4">
+    <h1 class="text-center text-success mt-4">{{productID==0?"Add Product":"Edit Product"}}</h1>
+    <form (submit)="ProductAction()">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Product Name</label>
+          <input type="text" class="form-control" name="ProductName" [(ngModel)]="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Team Name">
+          <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Price</label>
+          <input type="number" class="form-control" name="ProductPrice" [(ngModel)]="price" id="exampleInputPassword1" placeholder="Enter T-Shirt Price">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword2" class="form-label">Quantity</label>
+            <input type="number" class="form-control" name="ProductQuantity" [(ngModel)]="quantity" id="exampleInputPassword2" placeholder="Enter Quantity Of T-Shirts">
+          </div>
+       
+        <button type="submit" class="btn btn-outline-success">{{productID==0?"Add Product":"Edit Product"}}</button>
+      </form>
+</div>

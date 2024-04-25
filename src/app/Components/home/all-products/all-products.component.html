@@ -1,0 +1,44 @@
+<h1 class="text-center text-warning my-5"> Products</h1>
+        <div class="row">
+            @for(product of productList; track product.id){
+          
+          
+          <div class="col-md-3">
+           <div class="card col-md-4 my-3  bg-secondary text-dark" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Team: {{product.name}}
+                    @switch (product.id) {
+                        @case (1) {
+                            <i class="bi bi-circle-fill text-primary mx-1"></i>
+                            <i class="bi bi-circle-fill text-dark"></i>
+                        }
+                        @case (2) {
+                            <i class="bi bi-circle-fill text-danger mx-1"></i>
+                            <i class="bi bi-circle-fill text-dark"></i>
+
+                        }
+                        @case (3) {
+                            <i class="bi bi-circle-fill text-danger mx-1"></i>
+                            <i class="bi bi-circle-fill text-warning"></i>
+                        }
+                        @case (4) {
+                            <i class="bi bi-circle-fill text-primary mx-1"></i>
+                            <i class="bi bi-circle-fill text-light"></i>
+                        }
+                        @default {
+                            <i class="bi bi-circle-fill text-danger"></i>
+                        }
+                        
+                    } 
+                    </h5>
+                <p class="card-text">Price: {{product.price}}$</p>
+                <div class="mb-2">Quantity: {{product.quantity}} T-Shirts</div>
+                
+          
+                
+                <a href="#" class="btn btn-primary" [routerLink]="['/products',product.id]">Product Details</a>
+              </div>
+            </div>
+          </div>
+          }
+          </div>
