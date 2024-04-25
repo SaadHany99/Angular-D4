@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../Service/product.service';
 import { IProduct } from '../../../Models/i-product';
+import { ProductAPIService } from '../../../Service/product-api.service';
 
 @Component({
   selector: 'app-product-info',
@@ -12,16 +13,27 @@ import { IProduct } from '../../../Models/i-product';
 })
 export class ProductInfoComponent implements OnInit {
   Id:any;
-  Product?:IProduct;
-constructor(public activatedroute:ActivatedRoute,public productService:ProductService,public router:Router){
+  Product?:any;
+constructor(public activatedroute:ActivatedRoute,public productService:ProductAPIService,public router:Router){
   
 
 }
   ngOnInit(): void {
     this.Id=this.activatedroute.snapshot.params['id'];
+    this.productService.getProductById(this.Id).subscribe({
+      next:(data)=>{
+        this.Product=data;
+        // console.log(this.Product);
+      },
+      error:(err)=>{
+        console.log(err);
+      },
+      complete:()=>{
+        console.log("complete");
+
+      }
+    });
     // console.log(this.Id);
-   this.Product= this.productService.getProductById(this.Id);
-   console.log(this.Product);
    
   }
   backtoproducts(){

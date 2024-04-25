@@ -3,6 +3,7 @@ import { ProductService } from '../../Service/product.service';
 import { IProduct } from '../../Models/i-product';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ProductAPIService } from '../../Service/product-api.service';
 
 @Component({
   selector: 'app-products',
@@ -13,13 +14,21 @@ import { RouterLink } from '@angular/router';
 })
 export class ProductsComponent implements OnInit {
   products:IProduct[]=[];
-constructor(public product:ProductService){
+constructor(public product:ProductAPIService){
 
 }
   ngOnInit(): void {
-    this.products=this.product.getAllProducts();
+    this.product.getAllProducts().subscribe({
+      next:(data)=>{this.products=data;},
+      error:()=>{},
+      complete:()=>{},
+    });
   }
   deleteProduct(productid:number){
-    this.products=this.product.deleteProduct(productid);
+    this.product.deleteProduct(productid).subscribe({
+      next:()=>{this.products=this.products.filter(product=>product.id!=productid);},
+      error:()=>{},
+      complete:()=>{},
+    });
   }
 }
